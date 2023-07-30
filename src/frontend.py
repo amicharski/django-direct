@@ -3,24 +3,31 @@ import tkinter.ttk as ttk
 
 class Window:
     def __init__(self, master):
-        notebook = ttk.Notebook(master)
+        notebook = ttk.Notebook(master, height=100)
         notebook.place(x=0, y=0)
         file = ttk.Frame(notebook)
         insert = ttk.Frame(notebook)
 
         notebook.add(file, text='File')
-        file_pane = ttk.Panedwindow(file, orient=HORIZONTAL)
-        new = ttk.Labelframe(file_pane, text='New', width=100, height=100)
-        open = ttk.Labelframe(file_pane, text='Open', width=100, height=100)
-        save = ttk.Labelframe(file_pane, text='Save', width=100, height=100)
-        export = ttk.Labelframe(file_pane, text='Export', width=100, height=100)
+        notebook.add(insert, text='Insert')
+        notebook.pack(side=TOP, fill=X)
+
+        file_pane = ttk.PanedWindow(file, orient=HORIZONTAL)
+        file_pane.pack()
+
+        new = ttk.LabelFrame(file_pane, text='New', width=100, height=100)
+        open = ttk.LabelFrame(file_pane, text='Open', width=100, height=100)
+        save = ttk.LabelFrame(file_pane, text='Save', width=100, height=100)
+        export = ttk.LabelFrame(file_pane, text='Export', width=100, height=100)
         file_pane.add(new)
         file_pane.add(open)
         file_pane.add(save)
         file_pane.add(export)
+        print(file_pane.panes())
 
-        notebook.add(insert, text='Insert')
         insert_pane = ttk.Panedwindow(insert, orient=HORIZONTAL)
+        insert_pane.pack()
+
         shapes = ttk.Labelframe(insert_pane, text='Shapes', width=100, height=100)
         connectors = ttk.Labelframe(insert_pane, text='Connectors', width=100, height=100)
         font = ttk.Labelframe(insert_pane, text='Font', width=100, height=100)
@@ -29,8 +36,7 @@ class Window:
         insert_pane.add(connectors)
         insert_pane.add(font)
         insert_pane.add(tools)
-
-        notebook.pack(side=TOP, fill=X, height=150)
+        print(insert_pane.panes())
 
         canvas = Canvas(master)
         canvas.pack(fill=BOTH, side=BOTTOM)
