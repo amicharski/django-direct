@@ -23,7 +23,6 @@ class Window:
         file_pane.add(open)
         file_pane.add(save)
         file_pane.add(export)
-        print(file_pane.panes())
 
         insert_pane = ttk.Panedwindow(insert, orient=HORIZONTAL)
         insert_pane.pack()
@@ -36,10 +35,9 @@ class Window:
         insert_pane.add(connectors)
         insert_pane.add(font)
         insert_pane.add(tools)
-        print(insert_pane.panes())
 
         canvas = Canvas(master)
-        canvas.pack(fill=BOTH, side=BOTTOM)
+        canvas.pack(side=TOP, fill=BOTH, expand=TRUE)
 
 
 root = Tk()
